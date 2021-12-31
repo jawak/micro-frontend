@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-dua:
+    container_name: react-dua
+    build:
+      context: .
+    restart: always
+    stdin_open: true
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=fe.bendo.local
+      - VIRTUAL_PATH=/setting
+      - VIRTUAL_PORT=3001
+
+networks:
+  jawak-network:
+    external: true
