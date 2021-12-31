@@ -10,9 +10,11 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     environment:
-      - VIRTUAL_HOST=fe.bendo.local
+      - VIRTUAL_HOST=bvt.test
       - VIRTUAL_PATH=/setting
       - VIRTUAL_PORT=3001
+    networks:
+      - jawak-network
 
 networks:
   jawak-network:
