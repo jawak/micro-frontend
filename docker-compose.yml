@@ -1,0 +1,49 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=bvt.test
+      - NGINX_PORT=80
+    networks:
+      - jawak-network
+
+  react-satu:
+    container_name: react-satu
+    build:
+      context: ./fe1
+    restart: always
+    stdin_open: true
+    volumes:
+      - ./fe1:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=bvt.test
+      - VIRTUAL_PATH=/
+      - VIRTUAL_PORT=3000
+    networks:
+      - jawak-network
+
+  react-dua:
+    container_name: react-dua
+    build:
+      context: ./fe2
+    restart: always
+    stdin_open: true
+    volumes:
+      - ./fe2:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=bvt.test
+      - VIRTUAL_PATH=/setting
+      - VIRTUAL_PORT=3001
+    networks:
+      - jawak-network
+
+networks:
+  jawak-network:
+    external: true
