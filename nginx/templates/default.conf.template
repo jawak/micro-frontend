@@ -1,0 +1,19 @@
+upstream fe-satu {
+    server react-satu:3000;
+}
+
+upstream fe-dua {
+    server react-dua:3001;
+}
+server {
+    server_name ${NGINX_HOST};
+    listen  ${NGINX_PORT};
+
+    location / {
+        proxy_pass http://fe-satu;
+    }
+
+    location /setting {
+        proxy_pass http://fe-dua;
+    }
+}
