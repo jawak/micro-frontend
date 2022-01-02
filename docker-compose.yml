@@ -45,6 +45,22 @@ services:
     networks:
       - jawak-network
 
+  react-tiga:
+    container_name: react-tiga
+    build:
+      context: ./fe3
+    restart: always
+    stdin_open: true
+    volumes:
+      - ./fe3:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=bvt.test
+      - VIRTUAL_PATH=/setting
+      - VIRTUAL_PORT=3002
+    networks:
+      - jawak-network
+
 networks:
   jawak-network:
     external: true
