@@ -1,0 +1,21 @@
+version: '3'
+services:
+  react-tiga:
+    container_name: react-tiga
+    build:
+      context: .
+    restart: always
+    stdin_open: true
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - VIRTUAL_HOST=bvt.test
+      - VIRTUAL_PATH=/setting
+      - VIRTUAL_PORT=3002
+    networks:
+      - jawak-network
+
+networks:
+  jawak-network:
+    external: true
